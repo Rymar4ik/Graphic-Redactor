@@ -1,4 +1,4 @@
-package sample.shapes;
+package core.shapes;
 
 
 public class Point {

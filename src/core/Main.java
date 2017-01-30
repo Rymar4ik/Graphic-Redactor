@@ -1,5 +1,6 @@
-package sample;
+package core;
 
+import core.shapes.*;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -7,9 +8,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.shapes.Line;
-import sample.shapes.Point;
-import sample.shapes.Rectangle;
 
 public class Main extends Application {
 
@@ -43,8 +41,18 @@ public class Main extends Application {
         line.setLineColor(Color.GREEN);
         line.draw(gc);
 
-        Rectangle rectangle = new Rectangle(new Point(100, 100), 30, 30);
-        rectangle.draw(gc);
+        Oval oval1 = new StrokeOval(new Point(10, 10), 30, 60);
+        Oval center = new FillOval(new Point(10,10), 5 );
+        center.setFillColor(Color.RED);
+        Oval oval2 = new StrokeOval(new Point(50, 10), 30);
+        Oval oval3 = new FillOval(new Point(90, 10), 30, 60);
+        Oval oval4 = new FillOval(new Point(130, 10), 30);
+        oval1.draw(gc);
+        oval2.draw(gc);
+        oval3.draw(gc);
+        oval4.draw(gc);
+        center.draw(gc);
+
     }
 
     public static void main(String[] args) {

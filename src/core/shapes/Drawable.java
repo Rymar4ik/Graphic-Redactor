@@ -1,4 +1,4 @@
-package sample.shapes;
+package core.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
  */
 public interface Drawable {
 
-    void draw(GraphicsContext graphicsContext);
+    void draw(GraphicsContext gc);
 
     void setLineColor(Color line);
 
@@ -16,5 +16,4 @@ public interface Drawable {
 
     void setLineWidth(int lineWidth);
 
-    void applyDrawSettings(GraphicsContext graphicsContext);
 }

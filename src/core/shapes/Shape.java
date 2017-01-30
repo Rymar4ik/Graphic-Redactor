@@ -1,4 +1,4 @@
-package sample.shapes;
+package core.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -21,8 +21,8 @@ public abstract class Shape implements Drawable {
     @Override
     public void setLineWidth(int lineWidth) { this.lineWidth = lineWidth;}
 
-    @Override
-    public void applyDrawSettings(GraphicsContext gc) {
+    //TODO: Стоит ли этот метод выносить в интерфейс? Не нарушает пристутствие такого метода cаму задумку интерфейса?
+    private void applyDrawSettings(GraphicsContext gc) {
             gc.setFill(fill);
             gc.setStroke(line);
             gc.setLineWidth(lineWidth);
