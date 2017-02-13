@@ -1,23 +1,28 @@
 package core.shapes;
-//TODO: Целесообразнсоть абстрактного класа Oval, как и Rectangle, в целом?
-public abstract class Oval extends Shape {
 
+import core.engines.GraphicsEngine;
 
-    protected Point p;
-    protected double width, height;
+public class Oval extends Shape {
+    private Point p;
+    private double width, height;
+    private boolean fill;
 
-    //TODO: Целесообразность второго конструктора?! О_о
-    public Oval(Point center, double radius) {
-        p = center;
-        width = radius;
-        height = radius;
+    public Oval(Point p, double radius, boolean fill) {
+        this(p,radius, radius,fill);
     }
 
-    public Oval(Point center, double width, double height){
+    public Oval(Point center, double width, double height, boolean fill){
         p = center;
         this.width = width;
         this.height = height;
-
+        this.fill = fill;
     }
 
+    @Override
+    protected void draw(GraphicsEngine ge) {
+        if(fill)
+            ge.fillOval(p.getX(),p.getY(), width, height);
+        else
+            ge.strokeOval(p.getX(),p.getY(), width, height);
+    }
 }

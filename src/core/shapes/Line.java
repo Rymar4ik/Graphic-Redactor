@@ -1,5 +1,6 @@
 package core.shapes;
 
+import core.engines.GraphicsEngine;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -16,8 +17,7 @@ public class Line extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext gc) {
-        super.draw(gc);
-        gc.strokeLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+    public void draw(GraphicsEngine ge) {
+        ge.strokeLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
 }

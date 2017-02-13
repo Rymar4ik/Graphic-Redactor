@@ -1,12 +1,14 @@
 package core;
 
-import core.shapes.*;
+import core.engines.CanvasEngine;
+import core.shapes.Oval;
+import core.shapes.Point;
+import core.shapes.Rectangle;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,12 +20,26 @@ public class Main extends Application {
     private Canvas canvas;
     private GraphicsContext gc;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         this.stage = primaryStage;
         group = new Group();
         scene = new Scene(group, 1024, 768);
+
+        scene.setOnMousePressed(e ->{
+            gc.lineTo(e.getSceneX(), e.getSceneY());
+            gc.stroke();
+        });
+
+        scene.setOnMouseDragged(e -> {
+            gc.lineTo(e.getSceneX(), e.getSceneY());
+            gc.stroke();
+        });
 
         canvas = new Canvas(scene.getWidth(), scene.getHeight());
         gc = canvas.getGraphicsContext2D();
@@ -35,27 +51,19 @@ public class Main extends Application {
         stage.show();
     }
 
-    private void drawShapes(GraphicsContext gc){
+    private void drawShapes(GraphicsContext gc) {
 
-        Line line = new Line(new Point(0, 0), new Point(200,200));
-        line.setLineColor(Color.GREEN);
-        line.draw(gc);
+        CanvasEngine ce = new CanvasEngine();
+        ce.setGraphicContext(gc);
 
-        Oval oval1 = new StrokeOval(new Point(10, 10), 30, 60);
-        Oval center = new FillOval(new Point(10,10), 5 );
-        center.setFillColor(Color.RED);
-        Oval oval2 = new StrokeOval(new Point(50, 10), 30);
-        Oval oval3 = new FillOval(new Point(90, 10), 30, 60);
-        Oval oval4 = new FillOval(new Point(130, 10), 30);
-        oval1.draw(gc);
-        oval2.draw(gc);
-        oval3.draw(gc);
-        oval4.draw(gc);
-        center.draw(gc);
+        Rectangle line = new Rectangle(new Point(100, 100), 100, false);
+        line.show(ce);
 
-    }
 
-    public static void main(String[] args) {
-        launch(args);
+
+        Oval oval1 = new Oval(new Point(200, 100), 50, false);
+        Oval oval2 = new Oval(new Point(200, 200), 30, 50, true);
+        oval1.show(ce);
+        oval2.show(ce);
     }
 }
